@@ -1,5 +1,8 @@
+import styled from "@emotion/styled";
 import { TableCell, TableHead, TableRow } from "@mui/material";
-
+const HeaderStyle = styled.div`
+    font-weight:bold;
+`
 export const TableHeadComponent = ({columns}) => {
   return (
     <TableHead>
@@ -10,7 +13,7 @@ export const TableHeadComponent = ({columns}) => {
             align={column.align}
             style={{ minWidth: column.minWidth }}
           >
-            {column.label}
+            <HeaderStyle>{column.label}</HeaderStyle>
           </TableCell>
         ))}
       </TableRow>

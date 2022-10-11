@@ -13,7 +13,8 @@ export const MoviePage = () => {
 
   const [columns, setColumns] = useState([]);
   const [search, setSearch] = useState();
-
+  
+  // filter the movies by title name
   const onSearchChange = (searchQuery) => {
     setSearch(searchQuery);
     let response = rows.filter((e) =>
