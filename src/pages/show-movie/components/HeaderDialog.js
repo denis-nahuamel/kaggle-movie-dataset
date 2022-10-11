@@ -1,13 +1,13 @@
 import { DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { Genres } from "./GenresComponent";
+import { Subtitle } from "./SubtitleComponent";
 export const HeaderDialog = (props) => {
-  const { children, genres, onClose, ...other } = props;
+  const { children, onClose, ...other } = props;
 
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       <div>
-        {children}
+        {children.original_title}
         {onClose ? (
           <IconButton
             aria-label="close"
@@ -23,8 +23,7 @@ export const HeaderDialog = (props) => {
           </IconButton>
         ) : null}
       </div>
-
-      <Genres genres={genres}></Genres>
+      <Subtitle genres={children.genres} runtime={children.runtime} date={children.release_date}></Subtitle>
     </DialogTitle>
   );
 };

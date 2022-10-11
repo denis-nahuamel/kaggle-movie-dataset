@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { HeaderDialog } from "./components/HeaderDialog";
+import { RunTime } from "./components/RuntimeComponent";
 
 
 export default function MovieDetail({open, handleOpen,currentMovie}) {
@@ -16,11 +17,11 @@ export default function MovieDetail({open, handleOpen,currentMovie}) {
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <HeaderDialog id="customized-dialog-title" onClose={handleClose} genres={currentMovie?.genres}>
-          {currentMovie?.original_title}
+          <HeaderDialog id="customized-dialog-title" onClose={handleClose} >
+          {currentMovie}
           </HeaderDialog>
           <DialogContent dividers>
-            {currentMovie?.overview}
+            <div>{currentMovie?.overview}</div>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
