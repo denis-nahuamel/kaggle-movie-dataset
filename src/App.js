@@ -1,8 +1,8 @@
 import "./App.css";
-import { HomeComponent } from "./pages/home/components/HomeComponent";
+import {  MoviePage } from "./pages/home";
 
 function App() {
- return <HomeComponent></HomeComponent>
+ return <MoviePage></MoviePage>
 }
 
 export default App;
