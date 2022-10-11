@@ -2,14 +2,7 @@ import styled from "@emotion/styled";
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { HeaderDialog } from "./components/HeaderDialog";
 
-const BootstrapDialog = styled  (Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-      padding: theme.spacing(2),
-    },
-    '& .MuiDialogActions-root': {
-      padding: theme.spacing(1),
-    },
-  }));
+
 export default function MovieDetail({open, handleOpen}) {
   
     const handleClose = () => {
@@ -18,7 +11,7 @@ export default function MovieDetail({open, handleOpen}) {
   
     return (
       <div> 
-        <BootstrapDialog
+        <Dialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
@@ -34,7 +27,7 @@ export default function MovieDetail({open, handleOpen}) {
               Save changes
             </Button>
           </DialogActions>
-        </BootstrapDialog>
+        </Dialog>
       </div>
     );
   }
