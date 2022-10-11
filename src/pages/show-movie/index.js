@@ -3,26 +3,22 @@ import { HeaderDialog } from "./components/HeaderDialog";
 
 
 export default function MovieDetail({open, handleOpen,currentMovie}) {
-    console.log("current", currentMovie)
-    const handleClose = () => {
-        handleOpen(false);
-    };
   
     return (
       <div> 
         <Dialog
-          onClose={handleClose}
+          onClose={()=>handleOpen(false)}
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <HeaderDialog id="customized-dialog-title" onClose={handleClose} >
+          <HeaderDialog id="customized-dialog-title" onClose={()=>handleOpen(false)} >
           {currentMovie}
           </HeaderDialog>
           <DialogContent dividers>
             <div>{currentMovie?.overview}</div>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose}>
+            <Button autoFocus onClick={()=>handleOpen(false)}>
               Cerrar
             </Button>
           </DialogActions>

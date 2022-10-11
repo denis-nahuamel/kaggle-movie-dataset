@@ -1,64 +1,42 @@
 import { Fragment, useEffect, useState } from "react";
-import Papa from "papaparse";
 import { HomePage } from "..";
 import SearchBar from "./SearchBarComponent";
+import { getMovies } from "../../../services/movie.service";
 
 export const HomeComponent = () => {
-  // State to store parsed data
   const [rows, setRows] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
-  //State to store table Column name
   const [columns, setColumns] = useState([]);
   const [search, setSearch] = useState();
 
   const onSearchChange = (searchQuery) => {
+    setSearch(searchQuery);
     let response = rows.filter((e) =>
       e.original_title.toLowerCase().includes(searchQuery)
     );
     setFilteredData(response);
-    setSearch(searchQuery);
   };
 
-  const parserColumns = (columns) => {
-    return columns
-      .filter((e) => {
-        if (e === "original_title" || e === "status" || e === "vote_average")
-          return e;
-      })
-      .map((e) => {
-        return { id: e, label: e };
-      });
-  };
-
-  const changeHandler = (event) => {
-    Papa.parse(event, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: (results) => {
-        const rowsArray = [];
-
-        // Iterating data to get column name and their values
-        results.data.map((d) => {
-          rowsArray.push(Object.keys(d));
-        });
-        // Parsed Data Response in array format
-        console.log("data-wr", results.data)
-        setRows(results.data);
-        setFilteredData(results.data);
-        // Filtered Column Names
-        setColumns(parserColumns(rowsArray[0]));
-      },
-    });
-  };
   useEffect(() => {
-    changeHandler("./tmdb_5000_movies.csv");
+    try{
+    getMovies().then(response=>{
+      // get all the movies
+      setRows(response[0]);
+      setFilteredData(response[0]);
+      // Filtered Column Names
+      setColumns(response[1]);
+    });
+    }
+    catch(e){
+      console.log("error",e)
+    }
+      
   }, []);
   return (
     <>
       <Fragment>
-        <SearchBar onSearch={onSearchChange} value={search}></SearchBar>
+        <SearchBar onSearch={onSearchChange} value={search} ></SearchBar>
       </Fragment>
       <HomePage columns={columns} result={filteredData}></HomePage>
     </>
