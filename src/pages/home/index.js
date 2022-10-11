@@ -1,84 +1,49 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from "@mui/material";
-import { useState } from "react";
-import MovieDetail from "../show-movie";
+import { Fragment, useEffect, useState } from "react";
+import { TableContainerPage } from "./components/TableContainerContainer";
+import SearchBar from "./components/SearchBarComponent";
+import { getMovies } from "../../services/movie.service";
+import styled from "@emotion/styled";
 
-export const HomePage = ({ columns, result }) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [open, setOpen] = useState(false);
-  const [currentMovie, setCurrentMovie] = useState();
+const HomeContainer = styled.div`
+  margin:20px;
+`
+export const MoviePage = () => {
+  const [rows, setRows] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const [columns, setColumns] = useState([]);
+  const [search, setSearch] = useState();
+  
+  // filter the movies by title name
+  const onSearchChange = (searchQuery) => {
+    setSearch(searchQuery);
+    let response = rows.filter((e) =>
+      e.original_title.toLowerCase().includes(searchQuery)
+    );
+    setFilteredData(response);
   };
-  const handleOpenDialog = (movie) =>{
-    setCurrentMovie(movie)
-    setOpen(true);
-  }
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  useEffect(() => {
+    try{
+    getMovies().then(response=>{
+      // get all the movies
+      setRows(response[0]);
+      setFilteredData(response[0]);
+      // Filtered Column Names
+      setColumns(response[1]);
+    });
+    }
+    catch(e){
+      console.log("error",e)
+    }
+      
+  }, []);
   return (
-    <>
-    <Paper>
-      <TableContainer>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns?.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {result?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align} onClick={()=>handleOpenDialog(row)}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
-        component="div"
-        count={result?.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
-    <MovieDetail open={open} handleOpen={setOpen} currentMovie={currentMovie}></MovieDetail>
-    </>
+    <HomeContainer>
+      <Fragment>
+        <SearchBar onSearch={onSearchChange} value={search} ></SearchBar>
+      </Fragment>
+      <TableContainerPage columns={columns} result={filteredData}></TableContainerPage>
+    </HomeContainer>
   );
 };

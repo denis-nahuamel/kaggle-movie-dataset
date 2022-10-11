@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 export const SearchBar = (props) => {
     return (
       <FormControl sx={{ m: 2, width: '100ch' }}>
-        <InputLabel htmlFor='outlined-adornment-amount'>Search</InputLabel>
+        <InputLabel htmlFor='outlined-adornment-amount'>Buscar</InputLabel>
         <OutlinedInput
           id='outlined-adornment-amount'
           onChange={(e) => props.onSearch(e.target.value.toLowerCase())}
@@ -13,7 +13,7 @@ export const SearchBar = (props) => {
               <SearchIcon />
             </InputAdornment>
           }
-          label='Search'
+          label='Buscar'
         />
       </FormControl>
     );
