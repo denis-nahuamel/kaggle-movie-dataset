@@ -1,17 +1,15 @@
 import { DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Subtitle } from "./SubtitleComponent";
-import styled from "@emotion/styled";
-const HeaderStyle = styled.div`
-    font-weight:bold;
-`
+import { BoldStyle } from "../../../styles/style";
+
 export const HeaderDialog = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       <div>
-        <HeaderStyle>{children.original_title}</HeaderStyle>
+        <BoldStyle>{children.original_title}</BoldStyle>
         {onClose ? (
           <IconButton
             aria-label="close"

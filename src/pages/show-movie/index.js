@@ -1,9 +1,10 @@
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
+import { BoldStyle } from "../../styles/style";
 import { HeaderDialog } from "./components/HeaderDialog";
 
 
 export default function MovieDetail({open, handleOpen,currentMovie}) {
-  
+    console.log("current movie",currentMovie)
     return (
       <div> 
         <Dialog
@@ -15,6 +16,7 @@ export default function MovieDetail({open, handleOpen,currentMovie}) {
           {currentMovie}
           </HeaderDialog>
           <DialogContent dividers>
+            <BoldStyle>Descripción: </BoldStyle>
             <div>{currentMovie?.overview}</div>
           </DialogContent>
           <DialogActions>
