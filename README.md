@@ -2,7 +2,7 @@
 
 Using the kaggle movie dataset, this application shows all the movies availables.
 
-## Available Scripts
+## Run app
 
 In the project directory, you can run:
 
