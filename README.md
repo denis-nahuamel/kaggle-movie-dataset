@@ -1,7 +1,8 @@
 # Kaggle Movie Dataset
 
-Using the kaggle movie dataset, this application shows all the movies availables.
-![image](https://user-images.githubusercontent.com/26641353/195189672-75348a6c-afea-4dda-95cb-d6a38b3982a5.png)
+Using the kaggle movie dataset, this application shows all the movies availables. The application allows search the the movies, change the number of rows per page and paginate the movies.
+![image](https://user-images.githubusercontent.com/26641353/195189833-d52ca8af-1314-4379-a803-bd37d43f4470.png)
+
 
 ## Run app
 
