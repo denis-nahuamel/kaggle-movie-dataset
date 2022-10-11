@@ -1,6 +1,7 @@
 # Kaggle Movie Dataset
 
 Using the kaggle movie dataset, this application shows all the movies availables.
+![image](https://user-images.githubusercontent.com/26641353/195189672-75348a6c-afea-4dda-95cb-d6a38b3982a5.png)
 
 ## Run app
 
