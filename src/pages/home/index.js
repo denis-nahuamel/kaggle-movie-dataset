@@ -1,3 +1,4 @@
+import { RouteTwoTone } from "@mui/icons-material";
 import {
   makeStyles,
   Paper,
@@ -9,7 +10,7 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MovieDetail from "../show-movie";
 // const useStyles = makeStyles({
 //     table: {
@@ -20,6 +21,7 @@ export const HomePage = ({ columns, result }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [open, setOpen] = useState(false);
+  const [currentMovie, setCurrentMovie] = useState();
 
   const createData = (original_title, status, vote_average) => {
     return { original_title, status, vote_average };
@@ -31,7 +33,8 @@ export const HomePage = ({ columns, result }) => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-  const handleOpenDialog = () =>{
+  const handleOpenDialog = (movie) =>{
+    setCurrentMovie(movie)
       setOpen(!open);
   }
 
@@ -39,6 +42,9 @@ export const HomePage = ({ columns, result }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  useEffect(()=>{
+
+  },[open])
   return (
     <>
     <Paper>
@@ -66,7 +72,7 @@ export const HomePage = ({ columns, result }) => {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align} onClick={handleOpenDialog}>
+                        <TableCell key={column.id} align={column.align} onClick={()=>handleOpenDialog(row)}>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
@@ -89,7 +95,7 @@ export const HomePage = ({ columns, result }) => {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
-    <MovieDetail open={open} handleOpen={handleOpenDialog}></MovieDetail>
+    <MovieDetail open={open} handleOpen={handleOpenDialog} currentMovie={currentMovie}></MovieDetail>
     </>
   );
 };

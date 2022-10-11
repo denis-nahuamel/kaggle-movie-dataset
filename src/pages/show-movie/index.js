@@ -3,8 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { HeaderDialog } from "./components/HeaderDialog";
 
 
-export default function MovieDetail({open, handleOpen}) {
-  
+export default function MovieDetail({open, handleOpen,currentMovie}) {
     const handleClose = () => {
         handleOpen(false);
     };
@@ -17,14 +16,14 @@ export default function MovieDetail({open, handleOpen}) {
           open={open}
         >
           <HeaderDialog id="customized-dialog-title" onClose={handleClose}>
-            Modal title
+          {currentMovie?.original_title}
           </HeaderDialog>
           <DialogContent dividers>
             bebeses
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Save changes
+              Cerrar
             </Button>
           </DialogActions>
         </Dialog>
