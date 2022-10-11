@@ -1,7 +1,5 @@
-import styled from "@emotion/styled";
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { HeaderDialog } from "./components/HeaderDialog";
-import { RunTime } from "./components/RuntimeComponent";
 
 
 export default function MovieDetail({open, handleOpen,currentMovie}) {
