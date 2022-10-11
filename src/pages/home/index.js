@@ -4,12 +4,12 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TablePagination,
   TableRow,
 } from "@mui/material";
 import { useState } from "react";
 import MovieDetail from "../show-movie";
+import { TableHeadComponent } from "./components/TableHeadComponent";
 
 export const HomePage = ({ columns, result }) => {
   const [page, setPage] = useState(0);
@@ -34,19 +34,7 @@ export const HomePage = ({ columns, result }) => {
     <Paper>
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns?.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
+          <TableHeadComponent columns={columns}></TableHeadComponent>
           <TableBody>
             {result?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
