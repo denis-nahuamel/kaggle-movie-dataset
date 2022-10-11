@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Kaggle Movie Dataset
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Using the kaggle movie dataset, this application shows all the movies availables.
 
 ## Available Scripts
 
