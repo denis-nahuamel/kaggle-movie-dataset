@@ -2,7 +2,8 @@
 
 Using the kaggle movie dataset, this application shows all the movies availables. The application allows search the the movies, change the number of rows per page and paginate the movies.
 ![image](https://user-images.githubusercontent.com/26641353/195189833-d52ca8af-1314-4379-a803-bd37d43f4470.png)
-
+Clicking on a row will bring up a modal with additional information about the selected movie.
+![image](https://user-images.githubusercontent.com/26641353/195190546-8b7a3e9f-1100-4cbf-82ca-216da8ca4717.png)
 
 ## Run app
 
