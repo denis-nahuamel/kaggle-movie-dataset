@@ -44,6 +44,7 @@ export const HomeComponent = () => {
           rowsArray.push(Object.keys(d));
         });
         // Parsed Data Response in array format
+        console.log("data-wr", results.data)
         setRows(results.data);
         setFilteredData(results.data);
         // Filtered Column Names

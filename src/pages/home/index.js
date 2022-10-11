@@ -23,12 +23,12 @@ export const HomePage = ({ columns, result }) => {
   const [open, setOpen] = useState(false);
   const [currentMovie, setCurrentMovie] = useState();
 
-  const createData = (original_title, status, vote_average) => {
-    return { original_title, status, vote_average };
+  /*const createData = (original_title, status, vote_average, overview) => {
+    return { original_title, status, vote_average,overview };
   };
   const rows = result.map((item) =>
-    createData(item.original_title, item.status, item.vote_average)
-  );
+    createData(item.original_title, item.status, item.vote_average,item.overview)
+  );*/
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -64,7 +64,7 @@ export const HomePage = ({ columns, result }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {result
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -88,7 +88,7 @@ export const HomePage = ({ columns, result }) => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
         component="div"
-        count={rows.length}
+        count={result.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
